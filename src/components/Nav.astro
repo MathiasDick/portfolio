@@ -6,7 +6,9 @@ import ThemeToggle from './ThemeToggle.astro';
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Work', href: '/work/' },
+	{ label: 'Mechanic', href: '/mechanic/' },
+	{ label: 'Electronics', href: '/electronics/' },
+	{ label: 'Software', href: '/software/' },
 	{ label: 'About', href: '/about/' },
 ];
 
@@ -33,7 +35,7 @@ const isCurrentPage = (href: string) => {
 	<div class="menu-header">
 		<a href="/" class="site-title">
 			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
-			Jeanine White
+			Mathias Dick
 		</a>
 		<menu-button>
 			<template>

@@ -1,25 +1,26 @@
 ---
 import { getCollection } from 'astro:content';
-import ContactCTA from '../components/ContactCTA.astro';
-import Grid from '../components/Grid.astro';
-import Hero from '../components/Hero.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+import Hero from '../components/Hero.astro';
+import Grid from '../components/Grid.astro';
 
 const projects = (await getCollection('work')).sort(
-	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
-);
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+).filter((project) => project.data.tags.includes('software'));
 ---
 
 <BaseLayout
-	title="My Work | Mathias Dick"
-	description="Learn about Mathias Dick's most recent projects"
+	title="Software Projects | Mathias Dick"
+	description="Explore my software engineering projects"
 >
 	<div class="stack gap-20">
 		<main class="wrapper stack gap-8">
 			<Hero
-				title="My Work"
-				tagline="See my most recent projects below to get an idea of my past experience."
+				title="Software Projects"
+				tagline="I am a software engineer. Check out my coding projects."
 				align="start"
 			/>
 			<Grid variant="offset">

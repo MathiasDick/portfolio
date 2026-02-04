@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About | Jeanine White" description="About Jeanine White Lorem Ipsum">
+<BaseLayout title="About | Mathias Dick" description="About Mathias Dick Lorem Ipsum">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
@@ -15,7 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					width="1553"
 					height="873"
 					src="/assets/at-work.jpg"
-					alt="Jeanine White at work with a colleague"
+					alt="Mathias Dick at work with a colleague"
 				/>
 			</Hero>
 
@@ -23,35 +23,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<h2 class="section-title">Background</h2>
 				<div class="content">
 					<p>
-						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy. Sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
-						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
-						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
+						I am a versatile professional with a unique blend of skills in mechanics, electronics, and software engineering. 
+						My journey began in the garage, working on cars and mastering the intricacies of mechanical systems. 
+						This hands-on experience led me to explore the world of electronics, where I developed a passion for repairing and understanding complex circuits.
 					</p>
 					<p>
-						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
-						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
-						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
-						quam elementum pulvinar etiam non.
-					</p>
-					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
+						Driven by curiosity, I expanded my skillset into software development, allowing me to bridge the gap between hardware and software. 
+						Today, I leverage this multidisciplinary background to tackle challenging projects that require a comprehensive understanding of how things work, from the nuts and bolts to the code that runs them.
 					</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Education</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<p><strong>List your degree/certification here</strong><br>Institution Name, Year - Year</p>
+					<p><strong>Another degree/certification</strong><br>Institution Name, Year - Year</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Skills</h2>
 				<div class="content">
-					<p>officia unde omnis</p>
+					<p><strong>Mechanic:</strong> Engine Repair, Diagnostics, Maintenance, Hydraulic Systems</p>
+					<p><strong>Electronics:</strong> Soldering, Circuit Analysis, Component Repair, PCB Design</p>
+					<p><strong>Software:</strong> JavaScript, Python, C++, React, Astro, Git</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Resume</h2>
+				<div class="content">
+					<p>Download my compiled resume to see my full work history and qualifications.</p>
+					<div class="cta">
+						<a href="/assets/resume.pdf" class="button">
+							Download CV
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+								<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+								<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+							</svg>
+						</a>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -65,6 +74,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		display: flex;
 		flex-direction: column;
 		gap: 3.5rem;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		color: var(--gray-0);
+		background-color: var(--accent-regular);
+		border-radius: 999rem;
+		text-decoration: none;
+		font-weight: 600;
+		transition: background-color var(--theme-transition);
+		margin-top: 1rem;
+	}
+
+	.button:hover,
+	.button:focus {
+		background-color: var(--accent-dark);
 	}
 
 	img {

@@ -35,4 +35,6 @@ export const iconPaths = {
 	'linkedin-logo': `<rect width="184" height="184" x="36" y="36" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" rx="8"/><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M120 112v64m-32-64v64m32-36a28 28 0 0 1 56 0v36"/><circle stroke="none" cx="88" cy="80" r="12"/>`,
 	'instagram-logo': `<circle cx="128" cy="128" r="40" fill="none" stroke-miterlimit="10" stroke-width="16"/><rect width="184" height="184" x="36" y="36" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" rx="48"/><circle cx="180" cy="76" r="12" stroke="none" />`,
 	'tiktok-logo': `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M168 106a96 96 0 0 0 56 18V84a56 56 0 0 1-56-56h-40v128a28 28 0 1 1-40-25V89a68 68 0 1 0 80 67Z"/>`,
+	wrench: `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M227.3 77.3a31.9 31.9 0 0 0-45.2 0l-16.7 16.6-25-10.4-38.6 38.6-10.4-25-16.6-16.7a32 32 0 0 0-45.3 45.3L69.2 165l-2.5 35.8 35.8-2.5 39.3-39.3a31.9 31.9 0 0 0 0-45.2ZM195 56.4l-9.8 9.8m-27.7 27.8-9.9 9.9"/>`,
+	lightning: `<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M112 244l16-92H88l64-128-16 92h40z"/>`,
 };
