@@ -2,5 +2,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap location (update with your actual domain)
+# Sitemap location
 Sitemap: https://mathiasd.de/sitemap-index.xml

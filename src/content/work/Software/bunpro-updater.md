@@ -1,7 +1,7 @@
 ---
 title: Bunpro Progress Updater
 publishDate: 2024-02-09 00:00:00
-img: /assets/bunpro-updater.png
+img: /assets/bunpro_images/bunpro-updater.png
 img_alt: A simple GUI interface with vocabulary lists
 description: |
   A PySide6 desktop application that automates vocabulary mastery on Bunpro. It integrates with Wanikani and Anki to sync language learning progress across platforms using Selenium web automation.

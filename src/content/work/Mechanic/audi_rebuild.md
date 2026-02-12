@@ -1,7 +1,7 @@
 ---
 title: Audi Engine Rebuild
 publishDate: 2019-12-01 00:00:00
-img: /assets/stock-2.jpg
+img: /assets/audi_images/audi_thumbnail.jpg
 img_alt: Disassembled engine block showing pistons and cylinder head
 description: |
   Diagnosis and repair of a catastrophic engine failure, including valve train reconstruction and preventative piston ring upgrades to solve known oil consumption issues.

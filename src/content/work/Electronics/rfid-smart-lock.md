@@ -1,7 +1,7 @@
 ---
 title: RFID Smart Door Lock
 publishDate: 2024-01-15 00:00:00
-img: /assets/smart-lock.jpg
+img: /assets/smart_lock_images/smart_lock.jpg
 img_alt: 3D-printed motor mount attached to door lock with Arduino and RFID reader
 description: |
   An Arduino-based smart lock system using RFID authentication and stepper motor control. Features 3D-printed mounting hardware, multi-user access management, and visual status indicators.

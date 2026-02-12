@@ -1,7 +1,7 @@
 ---
 title: Market Monitor
 publishDate: 2019-12-01 00:00:00
-img: /assets/n8n_market_monitor.png
+img: /assets/n8n_images/n8n_market_monitor.png
 img_alt: Screenshot of the Market Monitor n8n workflow pipeline
 description: |
   A modular system that scans multiple marketplaces (API + scraping), normalizes product/offer data, and writes it into PostgreSQL with atomic staging so reporting stays consistent during long-running scans.
