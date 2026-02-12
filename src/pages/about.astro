@@ -1,147 +1,181 @@
 ---
-import ContactCTA from '../components/ContactCTA.astro';
-import Hero from '../components/Hero.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from "../components/ContactCTA.astro";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="About | Mathias Dick" description="About Mathias Dick Lorem Ipsum">
-	<div class="stack gap-20">
-		<main class="wrapper about">
-			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
-			>
-				<img
-					width="1553"
-					height="873"
-					src="/assets/at-work.jpg"
-					alt="Mathias Dick at work with a colleague"
-				/>
-			</Hero>
+<BaseLayout
+  title="About | Mathias Dick"
+  description="About Mathias Dick - Dual Student and Multidisciplinary Engineer"
+>
+  <div class="stack gap-20">
+    <main class="wrapper about">
+      <Hero
+        title="About"
+        tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+      >
+        <img
+          width="1553"
+          height="873"
+          src="/assets/at-work.jpg"
+          alt="Mathias Dick at work with a colleague"
+        />
+      </Hero>
 
-			<section>
-				<h2 class="section-title">Background</h2>
-				<div class="content">
-					<p>
-						I am a versatile professional with a unique blend of skills in mechanics, electronics, and software engineering. 
-						My journey began in the garage, working on cars and mastering the intricacies of mechanical systems. 
-						This hands-on experience led me to explore the world of electronics, where I developed a passion for repairing and understanding complex circuits.
-					</p>
-					<p>
-						Driven by curiosity, I expanded my skillset into software development, allowing me to bridge the gap between hardware and software. 
-						Today, I leverage this multidisciplinary background to tackle challenging projects that require a comprehensive understanding of how things work, from the nuts and bolts to the code that runs them.
-					</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Education</h2>
-				<div class="content">
-					<p><strong>List your degree/certification here</strong><br>Institution Name, Year - Year</p>
-					<p><strong>Another degree/certification</strong><br>Institution Name, Year - Year</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Skills</h2>
-				<div class="content">
-					<p><strong>Mechanic:</strong> Engine Repair, Diagnostics, Maintenance, Hydraulic Systems</p>
-					<p><strong>Electronics:</strong> Soldering, Circuit Analysis, Component Repair, PCB Design</p>
-					<p><strong>Software:</strong> JavaScript, Python, C++, React, Astro, Git</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Resume</h2>
-				<div class="content">
-					<p>Download my compiled resume to see my full work history and qualifications.</p>
-					<div class="cta">
-						<a href="/assets/resume.pdf" class="button">
-							Download CV
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-								<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-								<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-							</svg>
-						</a>
-					</div>
-				</div>
-			</section>
-		</main>
+      <section>
+        <h2 class="section-title">Background</h2>
+        <div class="content">
+          <p>
+            I am a versatile professional with a unique blend of skills in
+            mechanics, electronics, and software engineering. My journey began
+            in the garage, working on cars and mastering the intricacies of
+            mechanical systems. This hands-on experience led me to explore the
+            world of electronics, where I developed a passion for repairing and
+            understanding complex circuits.
+          </p>
+          <p>
+            Driven by curiosity, I expanded my skillset into software
+            development, allowing me to bridge the gap between hardware and
+            software. Today, as a Dual Student at Mercedes-Benz, I leverage this
+            multidisciplinary background to tackle challenging projects that
+            require a comprehensive understanding of how things work, from the
+            nuts and bolts to the code that runs them.
+          </p>
+        </div>
+      </section>
+      <section>
+        <h2 class="section-title">Education</h2>
+        <div class="content">
+          <p>
+            <strong>Dual Student at Mercedes-Benz AG</strong><br />Bachelor of
+            Engineering in Embedded Systems with focus on Automotive Engineering<br
+            />DHBW Ravensburg Campus Friedrichshafen, 2023 - 2026 (Expected)
+          </p>
+        </div>
+      </section>
+      <section>
+        <h2 class="section-title">Skills</h2>
+        <div class="content">
+          <p>
+            <strong>Mechanic:</strong> Engine Repair, Diagnostics, Maintenance, Hydraulic
+            Systems
+          </p>
+          <p>
+            <strong>Electronics:</strong> Soldering, Circuit Analysis, Component Repair,
+            PCB Design
+          </p>
+          <p>
+            <strong>Software:</strong> JavaScript, Python, C++, React, Astro, Git
+          </p>
+        </div>
+      </section>
+      <section>
+        <h2 class="section-title">Resume</h2>
+        <div class="content">
+          <p>
+            Download my compiled resume to see my full work history and
+            qualifications.
+          </p>
+          <div class="cta">
+            <a href="/assets/resume.pdf" class="button">
+              Download CV
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+                ></path>
+                <path
+                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-		<ContactCTA />
-	</div>
+    <ContactCTA />
+  </div>
 </BaseLayout>
 
 <style>
-	.about {
-		display: flex;
-		flex-direction: column;
-		gap: 3.5rem;
-	}
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
 
-	.button {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem 1rem;
-		color: var(--gray-0);
-		background-color: var(--accent-regular);
-		border-radius: 999rem;
-		text-decoration: none;
-		font-weight: 600;
-		transition: background-color var(--theme-transition);
-		margin-top: 1rem;
-	}
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--gray-0);
+    background-color: var(--accent-regular);
+    border-radius: 999rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color var(--theme-transition);
+    margin-top: 1rem;
+  }
 
-	.button:hover,
-	.button:focus {
-		background-color: var(--accent-dark);
-	}
+  .button:hover,
+  .button:focus {
+    background-color: var(--accent-dark);
+  }
 
-	img {
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
+  img {
+    margin-top: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
 
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-200);
-	}
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--gray-200);
+  }
 
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-	}
+  .section-title {
+    grid-column-start: 1;
+    font-size: var(--text-xl);
+    color: var(--gray-0);
+  }
 
-	.content {
-		grid-column: 2 / 4;
-	}
+  .content {
+    grid-column: 2 / 4;
+  }
 
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
+  .content :global(a) {
+    text-decoration: 1px solid underline transparent;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color var(--theme-transition);
+  }
 
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
-	}
+  .content :global(a:hover),
+  .content :global(a:focus) {
+    text-decoration-color: currentColor;
+  }
 
-	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
-		}
+  @media (min-width: 50em) {
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 60% 1fr;
+    }
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
-		}
+    .about > :global(:first-child) {
+      grid-column-start: 2;
+    }
 
-		section {
-			display: contents;
-			font-size: var(--text-lg);
-		}
-	}
+    section {
+      display: contents;
+      font-size: var(--text-lg);
+    }
+  }
 </style>

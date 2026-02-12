@@ -2,12 +2,12 @@
 title: Market Monitor
 publishDate: 2019-12-01 00:00:00
 img: /assets/n8n_market_monitor.png
-img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
+img_alt: Screenshot of the Market Monitor n8n workflow pipeline
 description: |
   A modular system that scans multiple marketplaces (API + scraping), normalizes product/offer data, and writes it into PostgreSQL with atomic staging so reporting stays consistent during long-running scans.
 tags:
+  - Software
   - Dev
-  - Branding
   - Backend
 ---
 Market Monitor is a modular data pipeline that continuously collects product, offer, and pricing information across multiple marketplaces. It’s built for real-world constraints: large catalogs (170k+ products per marketplace), strict API rate limits, long-running jobs, and the need to keep dashboards usable while fresh data is still being ingested.

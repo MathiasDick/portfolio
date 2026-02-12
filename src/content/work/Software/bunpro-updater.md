@@ -6,6 +6,7 @@ img_alt: A simple GUI interface with vocabulary lists
 description: |
   A PySide6 desktop application that automates vocabulary mastery on Bunpro. It integrates with Wanikani and Anki to sync language learning progress across platforms using Selenium web automation.
 tags:
+  - Software
   - Python
   - Automation
   - Desktop App

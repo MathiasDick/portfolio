@@ -1,65 +1,105 @@
 ---
 interface Props {
-	variant?: 'offset' | 'small';
+  variant?: "offset" | "small";
 }
 
 const { variant } = Astro.props;
 ---
 
-<ul class:list={['grid', { offset: variant === 'offset', small: variant === 'small' }]}>
-	<slot />
+<ul
+  class:list={[
+    "grid",
+    { offset: variant === "offset", small: variant === "small" },
+  ]}
+>
+  <slot />
 </ul>
 
 <style>
-	.grid {
-		display: grid;
-		grid-auto-rows: 1fr;
-		gap: 1rem;
-		list-style: none;
-		padding: 0;
-	}
+  .grid {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+  }
 
-	.grid.small {
-		grid-template-columns: 1fr 1fr;
-		gap: 1.5rem;
-	}
+  .grid.small {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
 
-	/* If last row contains only one item, make it span both columns. */
-	.grid.small > :global(:last-child:nth-child(odd)) {
-		grid-column: 1 / 3;
-	}
+  /* If last row contains only one item, make it span both columns. */
+  .grid.small > :global(:last-child:nth-child(odd)) {
+    grid-column: 1 / 3;
+  }
 
-	@media (min-width: 50em) {
-		.grid {
-			grid-template-columns: 1fr 1fr;
-			gap: 4rem;
-		}
+  @media (min-width: 50em) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
 
-		.grid.offset {
-			--row-offset: 7.5rem;
-			padding-bottom: var(--row-offset);
-		}
+    .grid.offset {
+      --row-offset: 7.5rem;
+      padding-bottom: var(--row-offset);
+    }
 
-		/* Shift first item in each row vertically to create staggered effect. */
-		.grid.offset > :global(:nth-child(odd)) {
-			transform: translateY(var(--row-offset));
-		}
+    /* Shift first item in each row vertically to create staggered effect. */
+    .grid.offset > :global(:nth-child(odd)) {
+      transform: translateY(var(--row-offset));
+    }
 
-		/* If last row contains only one item, display it in the second column. */
-		.grid.offset > :global(:last-child:nth-child(odd)) {
-			grid-column: 2 / 3;
-			transform: none;
-		}
+    /* If last row contains only one item, display it in the second column. */
+    .grid.offset > :global(:last-child:nth-child(odd)) {
+      grid-column: 2 / 3;
+      transform: none;
+    }
+  }
 
-		.grid.small {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 2rem;
-		}
+  @media (min-width: 90em) {
+    .grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+    }
 
-		.grid.small > :global(*) {
-			flex-basis: 20rem;
-		}
-	}
+    .grid.offset {
+      --row-offset: 5rem;
+    }
+
+    /* Reset staggered effect for 3-column layout */
+    .grid.offset > :global(:nth-child(3n + 1)) {
+      transform: translateY(var(--row-offset));
+    }
+
+    .grid.offset > :global(:nth-child(3n + 2)) {
+      transform: translateY(0);
+    }
+
+    .grid.offset > :global(:nth-child(3n)) {
+      transform: translateY(calc(var(--row-offset) * 0.5));
+    }
+
+    /* Adjust last child positioning for 3-column grid */
+    .grid.offset > :global(:last-child:nth-child(3n + 1)) {
+      grid-column: 2 / 3;
+      transform: translateY(0);
+    }
+
+    .grid.offset > :global(:last-child:nth-child(3n + 2)) {
+      grid-column: auto;
+      transform: translateY(0);
+    }
+
+    .grid.small {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .grid.small > :global(*) {
+      flex-basis: 20rem;
+    }
+  }
 </style>

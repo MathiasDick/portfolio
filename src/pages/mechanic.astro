@@ -9,7 +9,7 @@ import Grid from '../components/Grid.astro';
 
 const projects = (await getCollection('work')).sort(
 	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-).filter((project) => project.data.tags.includes('mechanic'));
+).filter((project) => project.data.tags.includes('Mechanic'));
 ---
 
 <BaseLayout
