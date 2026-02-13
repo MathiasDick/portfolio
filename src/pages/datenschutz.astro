@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="Datenschutzerklärung | Mathias Dick"
+	description="Datenschutzerklärung for this portfolio website."
+>
+	<main class="wrapper legal stack gap-8">
+		<header class="stack gap-2">
+			<h1>Datenschutzerklärung</h1>
+			<p>Stand: 13. Februar 2026</p>
+		</header>
+
+		<section class="stack gap-2">
+			<h2>1. Verantwortlicher</h2>
+			<p>
+				Mathias Dick<br />
+				Am Murgdamm 5, 76479 Steinmauern, Deutschland<br />
+				E-Mail: <a href="mailto:mathias.dick16@gmail.com">mathias.dick16@gmail.com</a>
+			</p>
+		</section>
+
+		<section class="stack gap-2">
+			<h2>2. Hosting und Server-Logfiles</h2>
+			<p>
+				Beim Aufruf dieser Website verarbeitet der Hosting-Provider technisch erforderliche Daten
+				(z. B. IP-Adresse, Datum/Uhrzeit, aufgerufene Seite, Browserinformationen) in
+				Server-Logfiles, um den sicheren und stabilen Betrieb der Website zu gewährleisten.
+			</p>
+			<p>
+				Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherem Betrieb
+				und Fehleranalyse).
+			</p>
+			<p>Netlify</p>
+		</section>
+
+		<section class="stack gap-2">
+			<h2>3. Kontaktaufnahme per E-Mail</h2>
+			<p>
+				Wenn Sie mich per E-Mail kontaktieren, verarbeite ich die von Ihnen übermittelten Daten
+				(z. B. Name, E-Mail-Adresse, Inhalt der Nachricht), um Ihre Anfrage zu bearbeiten.
+			</p>
+			<p>
+				Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Kommunikation) bzw. Art.
+				6 Abs. 1 lit. f DSGVO (allgemeine Kommunikation).
+			</p>
+		</section>
+
+		<section class="stack gap-2">
+			<h2>4. Lokale Speicherung (Theme-Einstellung)</h2>
+			<p>
+				Diese Website speichert Ihre gewählte Darstellung (hell/dunkel) im Browser über
+				<code>localStorage</code>. Diese Information bleibt auf Ihrem Gerät und wird nicht an mich
+				übermittelt.
+			</p>
+			<p>
+				Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (nutzerfreundliche Darstellung der Website).
+			</p>
+		</section>
+
+		<section class="stack gap-2">
+			<h2>5. Externe Links</h2>
+			<p>
+				Diese Website enthält Links zu externen Seiten (z. B. GitHub, LinkedIn). Beim Anklicken
+				dieser Links gelten die Datenschutzbestimmungen der jeweiligen Anbieter.
+			</p>
+		</section>
+
+		<section class="stack gap-2">
+			<h2>6. Schriftarten</h2>
+			<p>
+				Diese Website verwendet lokal verfügbare System-Schriftarten. Es werden keine
+				Schriftarten von Drittanbietern (z. B. Google Fonts) von externen Servern geladen.
+			</p>
+		</section>
+
+		<section class="stack gap-2">
+			<h2>7. Ihre Rechte</h2>
+			<p>
+				Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung,
+				Datenübertragbarkeit sowie Widerspruch nach Maßgabe der Art. 15–21 DSGVO.
+			</p>
+			<p>
+				Sie haben außerdem das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu
+				beschweren (Art. 77 DSGVO).
+			</p>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.legal {
+		padding-bottom: 4rem;
+		max-width: 75ch;
+	}
+
+	h1 {
+		font-size: var(--text-4xl);
+	}
+
+	h2 {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	p,
+	a,
+	code {
+		color: var(--gray-200);
+	}
+
+	a {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	a:hover,
+	a:focus {
+		text-decoration-color: currentColor;
+	}
+</style>

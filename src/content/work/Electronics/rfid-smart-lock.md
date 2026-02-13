@@ -1,6 +1,6 @@
 ---
 title: RFID Smart Door Lock
-publishDate: 2024-01-15 00:00:00
+publishDate: 2024-02-25 17:37:23
 img: /assets/smart_lock_images/smart_lock.jpg
 img_alt: 3D-printed motor mount attached to door lock with Arduino and RFID reader
 description: |
@@ -68,9 +68,9 @@ Loop Cycle:
 
 ### Motor Control Precision
 
-The DRV8825 driver requires current limiting to prevent thermal issues and ensure consistent torque. By measuring the reference voltage at the onboard potentiometer using Arduino's analog pins (0-4096 at 5V), the current was calibrated to 1V reference, preventing motor skipping and driver overheating.
+The DRV8825 driver requires current limiting to prevent thermal issues and ensure consistent torque. I calibrated the driver to a 1V reference using a multimeter on the potentiometer test point, which reduced motor skipping and prevented driver overheating.
 
-Position tracking uses step counting rather than absolute position sensing. This means the system must be manually calibrated after power cycles, which is a known limitation addressed in the reflection below.
+Position tracking uses step counting rather than absolute position sensing. This means it can drift if steps are missed and may require re-homing after startup, which is a known limitation addressed in the reflection below.
 
 ## Engineering Challenges
 

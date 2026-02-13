@@ -1,5 +1,7 @@
-I have been passionate about working on cars from an early age. I started by helping my grandfather on Smart engines and later gained hands-on workshop experience at my uncle’s garage, where I spent my free time learning engine systems, diagnostics, and repair methods.
+My mechanical experience started early by helping my grandfather with Smart engines, then expanded through hands-on time in my uncle’s garage. That combination gave me a practical foundation in engine systems, diagnostics, and repair workflows.
 
-Over the years, I progressed from maintenance work to complete engine rebuilds. My first major project was a 1.4 TSI Polo with a burnt valve and no compression. After building my own home workshop and collecting the right tools, I completed increasingly complex rebuilds, including a full Smart engine rebuild with new pistons, a full rebuild on a Seat Leon 2.0 TFSI EA113 with stuck valves, and a cylinder head rebuild on a Golf VI GTI.
+Over time, I progressed from maintenance tasks to complete engine rebuilds. My first major project was a 1.4 TSI Polo with a burnt valve and no compression. After building my own home workshop and assembling the right tooling, I completed increasingly complex projects: a full Smart engine rebuild with new pistons, a full Seat Leon 2.0 TFSI EA113 rebuild with stuck valves, and a Golf VI GTI cylinder head rebuild.
 
-In 2025, I rebuilt the engine in my Audi with a strict focus on precision: inspecting every surface, measuring all critical tolerances, and confirming all components were within specification.
+In a recent Audi rebuild, I focused on precision by inspecting every surface, measuring critical tolerances, and confirming components were within specification, resulting in a stable and reliable engine after reassembly.
+
+This systematic approach to diagnostics—isolating variables and verifying against specifications—is the same methodology I apply to debugging complex software systems.

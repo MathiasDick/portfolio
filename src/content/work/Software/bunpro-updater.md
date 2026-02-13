@@ -1,6 +1,6 @@
 ---
 title: Bunpro Progress Updater
-publishDate: 2024-02-09 00:00:00
+publishDate: 2024-11-09 17:00:00
 img: /assets/bunpro_images/bunpro-updater.png
 img_alt: A simple GUI interface with vocabulary lists
 description: |

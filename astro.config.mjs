@@ -12,9 +12,6 @@ export default defineConfig({
   integrations: [
     sitemap(),
     react(),
-    mermaid({
-      theme: 'forest',
-      autoTheme: true
-    })
+    mermaid()
   ]
 });

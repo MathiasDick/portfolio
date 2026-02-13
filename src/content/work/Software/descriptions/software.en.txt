@@ -1,5 +1,5 @@
-I have been interested in computers from an early age. What started with gaming quickly turned into curiosity about how software works under the hood.
+My interest in computers started with gaming and quickly shifted into curiosity about how software works behind the interface.
 
-As my interest grew, I began building my own projects in Unity with C#. Through that process, I discovered how software can automate repetitive tasks, improve productivity, and turn ideas into practical tools. I also worked with Arduino programming to connect software with real-world hardware applications.
+As that interest grew, I started building projects in Unity with C#. Through that process, I learned how software can automate repetitive tasks, improve productivity, and turn ideas into practical tools. I also worked with Arduino programming to connect software with real-world hardware use cases.
 
-Over time, I gained experience across different systems and environments, including automation workflows, web scraping, and dashboard development. To continue improving my engineering skills and deliver practical value, I began offering freelance software development services.
+Over time, I gained experience across automation workflows, web scraping, and dashboard development. To keep improving my engineering skills while delivering measurable value, I began offering freelance software development services focused on reducing manual work and improving process reliability.

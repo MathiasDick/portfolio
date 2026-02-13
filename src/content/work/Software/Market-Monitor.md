@@ -1,6 +1,6 @@
 ---
 title: Market Monitor
-publishDate: 2019-12-01 00:00:00
+publishDate: 2026-02-13 19:00:00
 img: /assets/n8n_images/n8n_market_monitor.png
 img_alt: Screenshot of the Market Monitor n8n workflow pipeline
 description: |
@@ -10,14 +10,9 @@ tags:
   - Dev
   - Backend
 ---
-Market Monitor is a modular data pipeline that continuously collects product, offer, and pricing information across multiple marketplaces. It’s built for real-world constraints: large catalogs (170k+ products per marketplace), strict API rate limits, long-running jobs, and the need to keep dashboards usable while fresh data is still being ingested.
+Market Monitor is a modular data pipeline that collects product, offer, and pricing data across multiple marketplaces under real constraints: large catalogs (170k+ items), strict rate limits, and long-running scans.
 
-The key idea is **atomic staging**: each scan writes into staging tables first, then promotes the completed result into production in one step. That way, reporting and downstream processes always see a consistent dataset—either the previous scan or the new one—never a partially-updated mix.
-
-## TL;DR
-- Built a multi-marketplace ingestion pipeline that stays consistent during hours-long scans
-- Uses staging tables + atomic promotion so production data is never partially updated
-- Includes scan tracking, progress monitoring, rate limiting, and post-scan validation
+The core design is **atomic staging**: each scan writes to staging tables and promotes only after validation. Dashboards always see a consistent dataset—either the previous snapshot or the new one, never a partial mix.
 
 ## What it does
 - Scans marketplaces via official APIs (and targeted scraping where needed)
@@ -25,12 +20,6 @@ The key idea is **atomic staging**: each scan writes into staging tables first, 
 - Tracks scan runs (start/end/fail), error counts, and quality metrics
 - Uses concurrency + rate limiting to scale without getting blocked
 - Promotes staging → production atomically per marketplace
-
-## Why it’s interesting
-Most “API integration” projects work fine at small scale. This one is designed for scale and reliability:
-- Long-running scans with resumable, observable progress
-- Process locking to prevent overlapping runs
-- Validation and post-scan analysis to catch data regressions
 
 ## Problem & constraints
 The system needed to answer a simple business question (“what’s happening to our prices and offers across marketplaces?”) under hard engineering constraints:
@@ -57,16 +46,16 @@ The system needed to answer a simple business question (“what’s happening to
 | **Infrastructure** | n8n (Workflow Orchestration), Linux (Ubuntu), Redis (Locking) |
 
 ## Production setup
-This isn’t a demo project — it’s running in production for a client.
-- Deployed on a self-hosted **n8n** instance on a Linux server
-- I maintain the server environment (updates, Python installation, dependencies)
-- Scans run on schedules and can be monitored via run logs + scan tracking records
+This project runs in production for a client:
+- Deployed on a self-hosted **n8n** instance on Linux
+- Environment maintained by me (updates, Python runtime, dependencies)
+- Scheduled scans monitored through workflow logs and scan tracking records
 
 ## Automation & AI enrichment
-In addition to raw monitoring, some feeds are enriched through AI workflows in n8n:
-- **Amazon bestsellers / newcomers** and **Schutzfolie24 newcomers** are ingested as “trend signals”
-- An AI step extracts structured attributes from noisy product metadata (e.g., model name, model numbers, device type)
-- The workflows are designed to return strict JSON so downstream steps stay deterministic
+Some feeds are enriched through AI workflows in n8n:
+- Ingests **Amazon bestsellers/newcomers** and **Schutzfolie24 newcomers** as trend signals
+- Extracts structured attributes from noisy metadata (model, model numbers, device type)
+- Enforces strict JSON outputs so downstream steps remain deterministic
 
 ## Architecture overview
 The pipeline is designed for fault tolerance. If a scan fails 90% of the way through, the bad data is discarded and production remains untouched (Atomic Staging).
@@ -108,12 +97,10 @@ sequenceDiagram
     P->>DB: Run Integrity Checks (Counts, Missing Items)
     
     alt Integrity Pass
-        rect rgb(23, 42, 23)
-            note over P, PROD: Atomic Promotion Phase
-            P->>PROD: Begin Transaction
-            P->>PROD: Swap Staging -> Active Schema
-            P->>PROD: Commit
-        end
+        note over P, PROD: Atomic Promotion Phase
+        P->>PROD: Begin Transaction
+        P->>PROD: Swap Staging -> Active Schema
+        P->>PROD: Commit
         P-->>S: Report Success (Metrics)
     else Integrity Fail
         P->>DB: Rollback / Discard Staging
@@ -121,41 +108,6 @@ sequenceDiagram
     end
     
     deactivate P
-```
-
-## Data model (conceptual)
-Normalization is critical here. While Amazon gives us ASINs and Kaufland gives us EANs, the database maps everything to a unified product entity to allow cross-marketplace price comparison.
-
-```mermaid
-erDiagram
-    Product ||--o{ Offer : "has many"
-    Product ||--o{ Identifier : "has many"
-    ScanRun ||--o{ Offer : "generated"
-    
-    Product {
-        string uuid PK
-        string title
-        string primary_image
-    }
-    
-    Identifier {
-        string type "GTIN/EAN/ASIN"
-        string value
-    }
-    
-    Offer {
-        float price
-        string seller_name
-        bool is_competitor
-        int delivery_days
-    }
-    
-    ScanRun {
-        int id PK
-        timestamp start_time
-        string status
-        int error_count
-    }
 ```
 
 ## Marketplaces (modules)
@@ -174,53 +126,22 @@ These modules monitor the client’s massive catalog (170k+ items) to track pric
 ### 2. AI-Powered Trend Detection (Schutzfolie24, Amazon Newcomers)
 *Focus: Unstructured data extraction and automation.*
 
-The client uses these modules to spot new devices (e.g., a new "iPhone 17") immediately after they appear on competitor sites or bestseller lists.
+These modules detect new devices as soon as they appear in competitor feeds or bestseller lists.
 
-- **The Flow:**
-  1. **Scraper (Python):** Collects raw "New Arrivals" or "Bestsellers" data (titles, images, unstructured text).
-  2. **n8n Workflow:** Passes raw data to an AI agent with a strict system prompt.
-  3. **AI Extraction:** Extracts structured JSON fields (`model`, `model_numbers`, `device_type`) from messy inputs like *"Samsung Galaxy S25 Ultra 5G..."*.
-  4. **Action:** Auto-tags products in the database.
-
-> *Example AI Prompt Strategy:*
-> The AI is instructed to return **strict JSON only**, filtering complex titles into standardized types (e.g., "Smartphone", "Tablet") and normalizing model names.
->
-> ```json
-> // The AI enforces this structure for every product detected
-> {
->   "model": "iPhone 17 Pro",
->   "model_numbers": "MG8J4ZD/A, B0FQG15YVP",
->   "device_type": "Smartphone" // Enum: [Smartphone, Tablet, Smartwatch...]
-> }
-> ```
-> This allows the client to auto-filter "new smartphones" without manual data entry.
+- **Flow:**
+    1. Python scraper collects raw newcomer/bestseller data.
+    2. n8n sends records to an AI extraction step.
+    3. AI returns strict JSON (`model`, `model_numbers`, `device_type`).
+    4. Products are auto-tagged for faster filtering and prioritization.
 
 ### 3. Inventory Tooling (eBay)
 - **eBay Inventory:** Handles bulk export and parsing of large XML seller lists (260k+ items) to audit listing status and shipping costs across international sites.
 
 ## Engineering Highlights
-One thing I learned is that "scripts" aren't enough—you need **systems**.
-
-### 1. Self-Healing Process Locks
-To prevent a cron job from piling up 100 scanner instances if one hangs, I implemented a file-based lock that checks for **stale PIDs**.
-- **The problem:** If a script crashes hard, the `lock.release()` in `finally:` might not run, leaving a "zombie" lock file that blocks all future runs.
-- **The fix:** The lock checker reads the PID from the file and queries the OS (via `os.kill` on Linux or `ctypes` on Windows) to see if that process *actually* exists. If not, it self-heals by overriding the stale lock.
-
-### 2. "Good Citizen" CLI Design for n8n
-Since this runs in a workflow engine (n8n), the CLI behavior had to be strictly managed:
-- **Exit Codes:** Uses semantic exit codes (0=Success, 1=Error, 2=Locked/Skipped) so the workflow can branch logic correctly.
-- **Stream Redirection:** Python loggers often hijack `stderr`. I explicitly preserve the original `stderr` file descriptor to ensure critical infrastructure errors (like lock failures) bubble up to the n8n dashboard immediately, bypassing the internal application log.
-
-### 3. Debugging the "Unscrapable"
-For the scraping modules (Schutzfolie24), transient failures are common.
-- I implemented a `save_debug_html` trigger: if a text parser fails or a CSRF token is missing, the script dumps the *exact* HTML payload it received to a timestamped file.
-- This allowed me to debug obscure issues (like anti-bot challenges or layout A/B tests) that you can never reproduce locally.
-
-### 4. Smart Caching & Thread-Safe Round Robin
-To minimize API costs and latency, I built a multi-layered lookup strategy for Amazon catalog data:
-- **Optimization:** Before hitting the API, it checks a local Postgres cache (valid for 30 days) for GTIN-to-ASIN mappings.
-- **Round-Robin API Clients:** The scanner rotates through multiple API clients (ZenGlass, Dipos) using thread-safe locks (`threading.Lock`) to distribute load and avoid hitting per-account rate limits.
-- **Batching & Retry Logic:** The `GTINProcessor` automatically batches lookups (20 items/chunk) and implements a smart "second pass" retry for any batches that fail due to transient network issues.
+- **Self-healing process locks:** Stale PID detection prevents blocked cron schedules after hard crashes.
+- **Workflow-friendly CLI behavior:** Semantic exit codes (`0/1/2`) and explicit `stderr` handling improve n8n observability.
+- **Scraper debugging hooks:** Timestamped HTML dumps speed up diagnosis of anti-bot and layout-change failures.
+- **Smart caching + round-robin clients:** Reduced API pressure with cached GTIN→ASIN lookups and thread-safe client rotation.
 
 ## Performance
 - Concurrency is used where safe (thread pools for IO-bound fetches)
@@ -234,7 +155,7 @@ To minimize API costs and latency, I built a multi-layered lookup strategy for A
   - **Galaxus:** **~5.7 hours** (DE) to **~13 hours** (CH) (throttled to respect strict anti-bot rate limits).
   - **Trend Scrapers:** **~12 minutes** end-to-end for daily newcomer detection.
 - **Throughput:** Peaking at **~6,800 items/min** on high-concurrency modules (Kaufland).
-- **Reliability:** **Zero system failures** in the last 30 days (100% success rate for scheduled runs), utilizing self-healing locks and automatic retries.
+- **Reliability:** No failed scheduled runs observed in the last 30 days, supported by self-healing locks and automatic retries.
 
 ## What I’d improve next
 - Add a small web UI for scan history + anomaly charts

@@ -108,7 +108,9 @@ const { Content } = await render(entry);
 
   .hero-image {
     width: 100%;
-    max-width: 100%;
+    max-width: 60rem;
+    margin-inline: auto;
+    display: block;
     border-radius: 1.5rem;
     box-shadow: var(--shadow-md);
   }
@@ -130,10 +132,34 @@ const { Content } = await render(entry);
   }
 
   .content :global(img) {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 30rem;
+    margin-inline: auto;
     border-radius: 1.5rem;
     box-shadow: var(--shadow-sm);
     background: var(--gradient-subtle);
     border: 1px solid var(--gray-800);
+  }
+
+  .content :global(table) {
+    width: auto;
+    border-collapse: collapse;
+    margin-block: 1.5rem;
+    margin-inline: auto;
+    gap: 1rem;
+  }
+
+  .content :global(td) {
+    padding: 0 0.5rem;
+  }
+
+  .content :global(table img) {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
   }
 
   .content :global(blockquote) {

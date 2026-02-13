@@ -1,7 +1,7 @@
 ---
 title: Audi Engine Rebuild
-publishDate: 2019-12-01 00:00:00
-img: /assets/audi_images/audi_thumbnail.jpg
+publishDate: 2025-06-14 13:23:12
+img: /assets/audi_images/audi-thumbnail.jpg
 img_alt: Disassembled engine block showing pistons and cylinder head
 description: |
   Diagnosis and repair of a catastrophic engine failure, including valve train reconstruction and preventative piston ring upgrades to solve known oil consumption issues.
@@ -47,6 +47,10 @@ After a meticulous inspection of the valve train, I found the culprit:
 *   **The Cause:** The valve stem itself had broken, preventing the valve from closing completely.
 *   **The Result:** Massive compression loss in that cylinder, causing the misfire.
 
+| In-engine (hard to diagnose) | Removed (confirmed failure) |
+| :---: | :---: |
+| ![Valve spring still installed in the head during diagnosis; the defect is subtle and easy to miss](/assets/audi_images/broken-valve-spring-installed.png) | ![Broken valve spring removed and shown on the bench in two pieces](/assets/audi_images/broken-valve-spring.png) |
+
 ## The Scope Creep (Preventative Upgrades)
 Once the cylinder head was off, I had to decide whether to do a "quick fix" or a proper restoration. Since I typically keep my cars for 2-3 years, I opted for reliability over speed.
 
@@ -55,8 +59,16 @@ I decided to replace the piston rings while the engine was open. This is a signi
 *   **Why it mattered:** Upon inspection, the engine still had the "old style" factory rings. These are notorious for clogging with carbon deposits, leading to excessive oil consumption and eventual engine failure.
 *   **Outcome:** Replacing them now likely saved the engine from a common death later in its life.
 
+![Pistons removed and laid out during disassembly for ring replacement and inspection](/assets/audi_images/pistons.jpg)
+
 ### 2. Valve Refurbishment
 During the reassembly and valve lapping process, I noticed heavy pitting on the exhaust valves. While I could have re-used them, I decided to pause the project for a week (despite a tight schedule with the parallel T2000 project) to order brand new exhaust valves.
+
+To document progress, I compared the cylinder head before and after cleaning:
+
+| Before cleaning | After cleaning |
+| :---: | :---: |
+| ![Removed cylinder head before cleaning, showing heavy residue from operation](/assets/audi_images/removed-cylinder-head.jpg) | ![Cylinder head after cleaning and preparation for reassembly](/assets/audi_images/cleaned-head.jpg) |
 
 ## Challenges & Troubleshooting
 The mechanical assembly went smoothly, but the first start attempt failed.
@@ -64,8 +76,14 @@ The mechanical assembly went smoothly, but the first start attempt failed.
 *   **Initial Thought:** Immobilizer failure or a fuse issue (unfamiliarity with this specific electronic key system).
 *   **The Fix:** After scanning the error codes, the solution was embarrassing but simple—a loose ground cable on the starter motor.
 
+![Fresh timing chain installed during reassembly, highlighting the complexity of the setup](/assets/audi_images/new-chain.jpg)
+
 ## Results
 After tightening the ground connection, the car fired up immediately. It has been running perfectly since the rebuild, with no oil consumption issues thanks to the updated piston rings.
+
+| Before cleaning | After cleaning |
+| :---: | :---: |
+| ![Engine block surface dirty after removal of cylinder head](/assets/audi_images/dirty-block-surface.jpg) | ![Engine block surface cleaned and prepared for reliable sealing during final assembly](/assets/audi_images/cleaned-block-surface.jpg) |
 
 ## Engineering Mindset
 This project highlights my approach to troubleshooting complex systems—whether mechanical or software. The process is identical:
