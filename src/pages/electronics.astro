@@ -1,38 +1,58 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactCTA from '../components/ContactCTA.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-import Hero from '../components/Hero.astro';
-import Grid from '../components/Grid.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import PortfolioPreview from "../components/PortfolioPreview.astro";
+import Hero from "../components/Hero.astro";
+import Grid from "../components/Grid.astro";
+import electronicsDescription from "../content/work/Electronics/descriptions/electronics.en.txt?raw";
 
-const projects = (await getCollection('work')).sort(
-	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-).filter((project) => project.data.tags.includes('Electronics'));
+const projects = (await getCollection("work"))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .filter((project) => project.data.tags.includes("Electronics"));
+
+const descriptionParagraphs = electronicsDescription
+  .split(/\r?\n\r?\n/)
+  .map((paragraph) => paragraph.trim())
+  .filter(Boolean);
 ---
 
 <BaseLayout
-	title="Electronics Repair | Mathias Dick"
-	description="Explore my electronics repair projects"
+  title="Electronics Repair | Mathias Dick"
+  description="Explore my electronics repair projects"
 >
-	<div class="stack gap-20">
-		<main class="wrapper stack gap-8">
-			<Hero
-				title="Electronics Repair"
-				tagline="I like electronics repair and have many projects in this area."
-				align="start"
-			/>
-			<Grid variant="offset">
-				{
-					projects.map((project) => (
-						<li>
-							<PortfolioPreview project={project} />
-						</li>
-					))
-				}
-			</Grid>
-		</main>
-		<ContactCTA />
-	</div>
+  <div class="stack gap-20">
+    <main class="wrapper stack gap-8">
+      <Hero
+        title="Electronics Repair"
+        tagline="Board-level diagnostics, precision soldering, and complex console repairs from fault tracing to BGA rework."
+        align="start"
+      />
+      <section
+        class="electronics-intro stack gap-4"
+        aria-label="Electronics experience summary"
+      >
+        {descriptionParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </section>
+      <Grid variant="offset">
+        {
+          projects.map((project) => (
+            <li>
+              <PortfolioPreview project={project} />
+            </li>
+          ))
+        }
+      </Grid>
+    </main>
+    <ContactCTA />
+  </div>
 </BaseLayout>
+
+<style>
+  .electronics-intro {
+    max-width: 72ch;
+    color: var(--gray-300);
+    font-size: var(--text-md);
+  }
+</style>

@@ -1,38 +1,58 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactCTA from '../components/ContactCTA.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-import Hero from '../components/Hero.astro';
-import Grid from '../components/Grid.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import PortfolioPreview from "../components/PortfolioPreview.astro";
+import Hero from "../components/Hero.astro";
+import Grid from "../components/Grid.astro";
+import mechanicDescription from "../content/work/Mechanic/descriptions/mechanic.en.txt?raw";
 
-const projects = (await getCollection('work')).sort(
-	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-).filter((project) => project.data.tags.includes('Mechanic'));
+const projects = (await getCollection("work"))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .filter((project) => project.data.tags.includes("Mechanic"));
+
+const descriptionParagraphs = mechanicDescription
+  .split(/\r?\n\r?\n/)
+  .map((paragraph) => paragraph.trim())
+  .filter(Boolean);
 ---
 
 <BaseLayout
-	title="Mechanic Projects | Mathias Dick"
-	description="Explore my automotive and mechanical projects"
+  title="Mechanic Projects | Mathias Dick"
+  description="Explore my automotive and mechanical projects"
 >
-	<div class="stack gap-20">
-		<main class="wrapper stack gap-8">
-			<Hero
-				title="Mechanic Projects"
-				tagline="I am a mechanic and have much experience with working on cars. Here are my projects."
-				align="start"
-			/>
-			<Grid variant="offset">
-				{
-					projects.map((project) => (
-						<li>
-							<PortfolioPreview project={project} />
-						</li>
-					))
-				}
-			</Grid>
-		</main>
-		<ContactCTA />
-	</div>
+  <div class="stack gap-20">
+    <main class="wrapper stack gap-8">
+      <Hero
+        title="Mechanic Projects"
+        tagline="Hands-on engine diagnostics, precision measurement, and full rebuilds across multiple vehicle platforms."
+        align="start"
+      />
+      <section
+        class="mechanic-intro stack gap-4"
+        aria-label="Mechanic experience summary"
+      >
+        {descriptionParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </section>
+      <Grid variant="offset">
+        {
+          projects.map((project) => (
+            <li>
+              <PortfolioPreview project={project} />
+            </li>
+          ))
+        }
+      </Grid>
+    </main>
+    <ContactCTA />
+  </div>
 </BaseLayout>
+
+<style>
+  .mechanic-intro {
+    max-width: 72ch;
+    color: var(--gray-300);
+    font-size: var(--text-md);
+  }
+</style>

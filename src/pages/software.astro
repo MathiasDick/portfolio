@@ -6,10 +6,16 @@ import ContactCTA from '../components/ContactCTA.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 import Hero from '../components/Hero.astro';
 import Grid from '../components/Grid.astro';
+import softwareDescription from '../content/work/Software/descriptions/software.en.txt?raw';
 
 const projects = (await getCollection('work')).sort(
 	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 ).filter((project) => project.data.tags.includes('Software'));
+
+const descriptionParagraphs = softwareDescription
+	.split(/\r?\n\r?\n/)
+	.map((paragraph) => paragraph.trim())
+	.filter(Boolean);
 ---
 
 <BaseLayout
@@ -20,9 +26,12 @@ const projects = (await getCollection('work')).sort(
 		<main class="wrapper stack gap-8">
 			<Hero
 				title="Software Projects"
-				tagline="I am a software engineer. Check out my coding projects."
+				tagline="Practical software solutions with a focus on automation, reliability, and clean implementation."
 				align="start"
 			/>
+			<section class="software-intro stack gap-4" aria-label="Software experience summary">
+				{descriptionParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</section>
 			<Grid variant="offset">
 				{
 					projects.map((project) => (
@@ -36,3 +45,11 @@ const projects = (await getCollection('work')).sort(
 		<ContactCTA />
 	</div>
 </BaseLayout>
+
+<style>
+	.software-intro {
+		max-width: 72ch;
+		color: var(--gray-300);
+		font-size: var(--text-md);
+	}
+</style>
