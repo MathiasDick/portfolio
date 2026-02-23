@@ -59,36 +59,12 @@ const { variant } = Astro.props;
 
   @media (min-width: 90em) {
     .grid {
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
     }
 
     .grid.offset {
-      --row-offset: 5rem;
-    }
-
-    /* Reset staggered effect for 3-column layout */
-    .grid.offset > :global(:nth-child(3n + 1)) {
-      transform: translateY(var(--row-offset));
-    }
-
-    .grid.offset > :global(:nth-child(3n + 2)) {
-      transform: translateY(0);
-    }
-
-    .grid.offset > :global(:nth-child(3n)) {
-      transform: translateY(calc(var(--row-offset) * 0.5));
-    }
-
-    /* Adjust last child positioning for 3-column grid */
-    .grid.offset > :global(:last-child:nth-child(3n + 1)) {
-      grid-column: 2 / 3;
-      transform: translateY(0);
-    }
-
-    .grid.offset > :global(:last-child:nth-child(3n + 2)) {
-      grid-column: auto;
-      transform: translateY(0);
+      --row-offset: 7.5rem;
     }
 
     .grid.small {
