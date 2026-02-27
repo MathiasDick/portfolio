@@ -43,7 +43,7 @@ The system needed to answer a simple business question (“what’s happening to
 | **Data Persistence** | PostgreSQL, SQLAlchemy (ORM), Alembic |
 | **Integration** | `python-sp-api` (Amazon), Custom REST Clients (Kaufland/Galaxus) |
 | **Scraping** | SeleniumBase (Headless Browser), BeautifulSoup4 (HTML Parsing) |
-| **Infrastructure** | n8n (Workflow Orchestration), Linux (Ubuntu), Redis (Locking) |
+| **Infrastructure** | n8n (Workflow Orchestration), Linux (Ubuntu)|
 
 ## Production setup
 This project runs in production for a client:
@@ -85,7 +85,7 @@ sequenceDiagram
 
     S->>P: Trigger Scan (Cron)
     activate P
-    P->>P: Acquire Process Lock (Redis/File)
+    P->>P: Acquire Process Lock File
     
     loop Concurrent Batch Processing
         P->>M: Fetch Inventory/Offers (w/ Rate Limit)
