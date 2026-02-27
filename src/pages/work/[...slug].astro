@@ -117,6 +117,73 @@ const { Content } = await render(entry);
 
   .content {
     width: 100%;
+    max-width: 60rem;
+    margin-inline: auto;
+  }
+
+  .content :global(pre.mermaid) {
+    max-width: 100%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .content :global(pre.mermaid:hover) {
+    opacity: 0.8;
+  }
+
+  .diagram-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    padding: 2rem;
+    overflow: auto;
+  }
+
+  .diagram-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .diagram-modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    overflow: auto;
+  }
+
+  .diagram-modal-content :global(svg) {
+    width: 85vw !important;
+    height: auto !important;
+  }
+
+  .diagram-modal-close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent-regular);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    z-index: 10000;
+  }
+
+  .diagram-modal-close:hover {
+    background: var(--accent-dark);
   }
 
   .content > :global(* + *) {
@@ -144,15 +211,27 @@ const { Content } = await render(entry);
   }
 
   .content :global(table) {
-    width: auto;
+    width: 100%;
     border-collapse: collapse;
-    margin-block: 1.5rem;
-    margin-inline: auto;
-    gap: 1rem;
+    margin-block: 2rem;
   }
 
+  .content :global(th),
   .content :global(td) {
-    padding: 0 0.5rem;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-800);
+  }
+
+  .content :global(th) {
+    font-weight: 600;
+    color: var(--gray-0);
+    border-bottom: 2px solid var(--gray-800);
+  }
+
+  /* Remove border from last row */
+  .content :global(tr:last-child td) {
+    border-bottom: none;
   }
 
   .content :global(table img) {
@@ -220,3 +299,67 @@ const { Content } = await render(entry);
     }
   }
 </style>
+
+<div class="diagram-modal" id="diagramModal">
+  <button class="diagram-modal-close" id="closeModal">Close ✕</button>
+  <div class="diagram-modal-content" id="modalContent"></div>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    var modal = document.getElementById("diagramModal");
+    var modalContent = document.getElementById("modalContent");
+    var closeBtn = document.getElementById("closeModal");
+
+    console.log("Modal script loaded", modal, modalContent);
+
+    // Use event delegation on document
+    document.addEventListener("click", function (e) {
+      var target = e.target;
+      // Walk up the DOM to find a pre.mermaid
+      while (target && target !== document) {
+        if (target.tagName === "PRE" && target.classList.contains("mermaid")) {
+          console.log("Mermaid diagram clicked!");
+          var svg = target.querySelector("svg");
+          console.log("SVG found:", svg);
+          if (!svg) return;
+
+          var wrapper = document.createElement("div");
+          wrapper.innerHTML = svg.outerHTML;
+          var insertedSvg = wrapper.querySelector("svg");
+          if (insertedSvg) {
+            insertedSvg.removeAttribute("width");
+            insertedSvg.removeAttribute("height");
+            insertedSvg.removeAttribute("style");
+            insertedSvg.style.maxWidth = "85vw";
+            insertedSvg.style.maxHeight = "85vh";
+            insertedSvg.style.width = "85vw";
+            insertedSvg.style.height = "auto";
+          }
+
+          modalContent.innerHTML = "";
+          modalContent.appendChild(wrapper);
+          modal.classList.add("active");
+          return;
+        }
+        target = target.parentElement;
+      }
+    });
+
+    closeBtn.addEventListener("click", function () {
+      modal.classList.remove("active");
+    });
+
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        modal.classList.remove("active");
+      }
+    });
+  });
+</script>

@@ -271,7 +271,7 @@ h5 {
 
 .mermaid svg {
 	width: auto !important;
-	max-width: 85% !important;
+	max-width: 95% !important;
 	height: auto !important;
-	max-height: 70vh !important;
+	max-height: 200vh !important;
 }

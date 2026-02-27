@@ -9,6 +9,10 @@ import mermaid from 'astro-mermaid';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mathiasd.de',
+  redirects: {
+    '/de': '/',
+    '/de/[...slug]': '/[...slug]'
+  },
   integrations: [
     sitemap(),
     react(),

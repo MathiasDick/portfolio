@@ -1,0 +1,201 @@
+%% resume.tex — Mathias Dick
+%% Paste into https://overleaf.com (new project → paste code)
+%% Requires: fontawesome5, geometry, titlesec, enumitem, hyperref, xcolor, multicol
+
+\documentclass[10pt, a4paper]{article}
+
+% ─── Packages ────────────────────────────────────────────────────────────────
+\usepackage[a4paper, top=1.6cm, bottom=1.6cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{paracol}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[default]{sourcesanspro} % Clean, modern sans-serif font
+\usepackage{graphicx}
+
+% ─── Colors ──────────────────────────────────────────────────────────────────
+\definecolor{accent}{HTML}{2563EB}   % blue accent
+\definecolor{subtle}{HTML}{6B7280}   % grey subtitles
+
+% ─── Hyperlinks ──────────────────────────────────────────────────────────────
+\hypersetup{colorlinks=true, urlcolor=accent, hidelinks}
+
+% ─── Remove page numbering ───────────────────────────────────────────────────
+\pagestyle{empty}
+
+% ─── Disable Hyphenation ─────────────────────────────────────────────────────
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% ─── Section style ───────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}{0em}
+  {}
+  [\vspace{-0.4em}\rule{\linewidth}{0.5pt}\vspace{0.2em}]
+
+\titlespacing*{\section}{0pt}{0.8em}{0.4em}
+
+% ─── List style ──────────────────────────────────────────────────────────────
+\setlist[itemize]{
+  leftmargin=1.2em,
+  itemsep=0.1em,
+  parsep=0em,
+  topsep=0.2em
+}
+
+% ─── Custom commands ─────────────────────────────────────────────────────────
+
+% \entry{Title}{Subtitle / Period}{Description or items}
+\newcommand{\entry}[3]{%
+  \textbf{\large #1} \hfill \textcolor{subtle}{\small #2}%
+  \def\temp{#3}\ifx\temp\empty\else\\[0.1em]\textbf{#3}\fi
+}
+
+% \project{Title}{Tools}
+\newcommand{\project}[2]{%
+  \textbf{\textit{#1}} \hfill \textcolor{subtle}{\footnotesize \textbf{Tech:} #2}\vspace{0.1em}
+}
+
+% ─── Ragged Right for Skills ─────────────────────────────────────────────────
+\newcommand{\skill}[2]{%
+  \textbf{#1}\\[0.15em]
+  {\raggedright #2\par}
+}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ═══ HEADER + SUMMARY ═══════════════════════════════════════════════════════
+% Place your photo as photo.jpg in the same folder as this .tex file
+\begin{minipage}[t]{0.76\linewidth}
+  \vspace{0pt}
+  {\Huge\bfseries Mathias Dick}\\[0.4em]
+  \small
+  \faMapMarker*\enspace Rastatt, Germany\quad
+  \faEnvelope\enspace \href{mailto:mathias.dick16@gmail.com}{mathias.dick16@gmail.com}\\[0.3em]
+  \faGlobe\enspace Portfolio: \href{https://mathiasd.de?utm_source=cv}{mathiasd.de}\quad
+  \faGithub\enspace \href{https://github.com/MathiasDick}{github.com/MathiasDick}\quad
+  \faLinkedin\enspace \href{https://www.linkedin.com/in/mathias-dick/}{linkedin.com/in/mathias-dick}
+  \vspace{0.5em}
+
+  {\large\bfseries\color{accent} Zusammenfassung}\\[-0.3em]
+  \rule{\linewidth}{0.5pt}\\[0.3em]
+  \small
+  Multidisziplinärer Ingenieur, der Softwareentwicklung, Elektronik und praktische Mechanik-Kenntnisse vereint.
+  Derzeit Dualer Student bei der \textbf{Mercedes-Benz AG}, mit Fokus auf der Verbindung von Full-Stack- und Desktop-Anwendungsentwicklung mit Automobiltechnik.
+  Starker Fokus auf die Entwicklung zuverlässiger, produktionsreifer Tools — von KI-gestützter Fehlerticket-Generierung bis hin zu industriellen Netzwerk-Monitoring-Systemen.\\[0.4em]
+  \href{https://mathiasd.de/work/?utm_source=cv_summary}{\textit{\footnotesize\textcolor{subtle}{\faLink\enspace Detaillierte technische Berichte, Architekturdiagramme und Fotos meiner Projekte sind unter mathiasd.de/work verfügbar}}}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.20\linewidth}
+  \vspace{0pt}
+  \includegraphics[width=\linewidth, keepaspectratio=true]{photo.jpg}
+\end{minipage}
+\vspace{0.6em}
+
+% ═══ TWO-COLUMN BODY ═════════════════════════════════════════════════════════
+% \setlength{\columnsep}{1.5em}
+% \columnratio{0.64}
+% \begin{paracol}{2}
+\begin{minipage}[t]{0.64\linewidth}
+
+% ─── LEFT COLUMN ─────────────────────────────────────────────────────────────
+
+\section{Berufserfahrung}
+
+\entry{Dualer Student}{Okt 2023 – Sep 2026 (Voraussichtlich)}{Mercedes-Benz AG · Rastatt, Deutschland}\\[0.2em]
+\project{KI-Ticket-Assistent}{Python · React · Flask · GPT-4o · Whisper · RAG}
+\begin{itemize}
+  \item Entwicklung einer hybriden KI-Pipeline mit lokaler Whisper-Transkription und GPT-4o zur Automatisierung der formalen Fehlerticket-Generierung, wodurch die manuelle Eingabezeit für über 80 Tickets wöchentlich um ca. 50\% reduziert wurde.
+  \item Implementierung einer RAG-basierten Duplikaterkennung über eine vektorisierte Fehlerhistorie, um redundante Einreichungen zu verhindern.
+  \item Bereitstellung als eigenständige ausführbare Datei, die importfertige Tickets und HTML-Berichte generiert.
+\end{itemize}
+
+\vspace{0.4em}
+
+\project{Industrieller Redundanz-Monitor}{Python · AsyncIO · Flask · React · SNMP · SQLite}
+\begin{itemize}
+  \item Entwicklung eines Monitoring-Systems zur Erkennung stiller Redundanzausfälle über 500+ Industrie-Switches hinweg, um Ausfallzeiten zu vermeiden.
+  \item Entwicklung eines asynchronen SNMP-Scanners mit Auto-Discovery, der die manuelle Bestandsverwaltung überflüssig macht.
+  \item Entwicklung eines virtualisierten React-Frontends und einer sicheren, JWT-geschützten API, bereitgestellt über IIS.
+\end{itemize}
+
+\vspace{0.4em}
+
+\entry{Freiberuflicher Entwickler}{Jan 2024 – Heute}{}\\[0.2em]
+\project{Markt-Monitor}{Python · PostgreSQL · SQLAlchemy · n8n · Linux}
+\begin{itemize}
+  \item Entwicklung einer Produktions-Datenpipeline, die über 170.000 Produkte auf großen E-Commerce-Plattformen scannt, um Trendanalysen und marktübergreifende Preisvergleiche zu ermöglichen.
+  \item Implementierung nebenläufiger Worker mit Prozess-Locking und KI-gesteuerter Datenanreicherung über n8n, wodurch über 50.000 falsch gelistete Artikel identifiziert wurden.
+  \item Selbst gehostet auf Linux, mit eigenständiger Verwaltung von Deployments, Updates und Workflow-Monitoring.
+\end{itemize}
+
+\vspace{0.4em}
+
+\section{Ausgewählte Projekte}
+
+\textbf{Audi Motorinstandsetzung} \hfill \textcolor{subtle}{\small Jun 2025}\\[0.15em]
+\textcolor{subtle}{\footnotesize Diagnose · Präzisionsmesstechnik}\\
+\textit{\footnotesize Diagnose und Reparatur eines katastrophalen Ventilschadens an einem 2.0 TFSI Motor. Anwendung systematischer Fehlersuche und Werkstoleranzen für eine zuverlässige Instandsetzung.}
+
+\vspace{0.5em}
+
+\textbf{RFID Smart-Türschloss} \hfill \textcolor{subtle}{\small Feb 2024}\\[0.15em]
+\textcolor{subtle}{\footnotesize Arduino · C++ · 3D-Druck · CAD}\\
+\textit{\footnotesize Entwicklung eines schlüssellosen Zugangssystems mit RFID und Schrittmotorsteuerung, inklusive maßgeschneiderter, zerstörungsfrei montierbarer 3D-Druck-Halterungen.}
+
+% ─── RIGHT COLUMN ────────────────────────────────────────────────────────────
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.32\linewidth}
+
+\section{Ausbildung}
+
+\textbf{B.Eng. Embedded Systems}\\
+\textcolor{subtle}{\small Studienrichtung Fahrzeugelektronik}\\
+\textcolor{subtle}{\small DHBW Ravensburg}\\
+\textcolor{subtle}{\small Campus Friedrichshafen}\\
+\textcolor{subtle}{\small Okt 2023 – Sep 2026 (Voraussichtlich)}
+
+\vspace{0.5em}
+
+\textit{\footnotesize\textcolor{subtle}{Duales Studium in Kooperation mit der Mercedes-Benz AG — Wechsel zwischen Praxisphasen im Unternehmen und Theoriephasen an der Hochschule.}}
+
+\vspace{0.5em}
+
+\section{Fähigkeiten}
+
+\skill{Sprachen \& Runtimes}{Python 3.10+, JavaScript / TypeScript, C++ (Embedded), SQL}
+
+\vspace{0.4em}
+\skill{Frameworks \& Bibliotheken}{React, Redux Toolkit, Vite, Flask, Waitress, SQLAlchemy, Alembic, Pandas, AsyncIO, PySide6, Selenium}
+
+\vspace{0.4em}
+\skill{KI / ML}{Azure OpenAI (GPT-4o), Whisper (lokal), RAG / Vektor-Embeddings, Prompt Engineering}
+
+\vspace{0.4em}
+\skill{Infrastruktur}{PostgreSQL, SQLite, n8n, IIS, Windows Server, Linux, Git, PyInstaller}
+
+\vspace{0.4em}
+\skill{Hardware \& Werkzeuge}{Arduino / Embedded Systems, SNMP, Fusion 360, Elektronikreparatur \& Diagnose}
+
+\section{Sprachen}
+
+\begin{itemize}[leftmargin=0.8em]
+  \item \textbf{Deutsch} — Muttersprache
+  \item \textbf{Englisch} — Fließend
+  \item \textbf{Russisch} — Gute Kenntnisse
+  \item \textbf{Japanisch} — Mittelstufe (JLPT N2)
+\end{itemize}
+
+\end{minipage}
+
+\end{document}
