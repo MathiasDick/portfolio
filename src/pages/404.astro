@@ -1,8 +1,18 @@
 ---
-import Hero from '../components/Hero.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Looks like a loose connection. This page doesn't exist." />
+  <Hero
+    title="Page Not Found"
+    tagline="Looks like a loose connection. This page doesn't exist."
+  />
+  <script>
+    // Client-side redirect for deep links under /de/ that aren't statically generated
+    if (window.location.pathname.startsWith("/de/")) {
+      const newPath = window.location.pathname.replace(/^\/de\//, "/");
+      window.location.replace(newPath);
+    }
+  </script>
 </BaseLayout>

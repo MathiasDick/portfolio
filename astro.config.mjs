@@ -11,7 +11,13 @@ export default defineConfig({
   site: 'https://mathiasd.de',
   redirects: {
     '/de': '/',
-    '/de/[...slug]': '/[...slug]'
+    '/de/work': '/work',
+    '/de/about': '/about',
+    '/de/mechanic': '/mechanic',
+    '/de/electronics': '/electronics',
+    '/de/software': '/software',
+    '/de/impressum': '/impressum',
+    '/de/datenschutz': '/datenschutz'
   },
   integrations: [
     sitemap(),
